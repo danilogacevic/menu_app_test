@@ -11,7 +11,7 @@ export default new Vuex.Store({
 	},
 	getters: {
 
-		getActive: state => state.currencies.find(c => c.id == state.activeCurrency),
+		isDuplicate: (state,value) => state.currencies.findIndex(c => c.iso == value || c.symbol == value),
 
 	},
 	mutations: {
@@ -41,8 +41,7 @@ export default new Vuex.Store({
 
 			state.activeCurrency = currency;
 
-
-
-		}
+		},
+		
 	}
 });

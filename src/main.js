@@ -8,6 +8,9 @@ import "font-awesome/css/font-awesome.min.css"
 
 import store from "./store";
 import router from "./router";
+import Vuelidate from "vuelidate";
+
+Vue.use(Vuelidate);
 
 new Vue({
   render: h => h(App),
