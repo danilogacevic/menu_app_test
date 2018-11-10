@@ -10,7 +10,7 @@
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Currency symbol</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" v-model="symbol" placeholder="Password">
+      <input type="text" class="form-control" v-model="symbol" placeholder="Password">
     </div>
   </div>
   

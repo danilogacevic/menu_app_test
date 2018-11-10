@@ -6,25 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	strict:true,
 	state: {
-		currencies: [
-
-					{
-						id:1,
-						iso:"Dollar",
-						symbol:"$"
-					},
-					{
-						id:2,
-						iso:"Euro",
-						symbol:"E"
-					},
-					{
-						id:3,
-						iso:"Dinar",
-						symbol:"D"
-					}
-
-		],
+		currencies: [],
 		activeCurrency: null
 	},
 	getters: {
@@ -44,8 +26,15 @@ export default new Vuex.Store({
 
 			if(JSON.stringify(currency) !== JSON.stringify(c)) {
 
-				state.currencies.splice(state.currencies.indexOf(c),1,currency);
+			state.currencies.splice(state.currencies.indexOf(c),1,currency);
+
 			} 
+
+		},
+		deleteCurrency(state,id) {
+
+			let index = state.currencies.findIndex(c => c.id === id);
+			state.currencies.splice(index,1);
 
 		},
 		setActive(state,currency){

@@ -60,12 +60,13 @@
 				// console.log(this.$store.state.activeCurrency);
 				this.code = this.$store.state.activeCurrency.iso;
 				this.symbol = this.$store.state.activeCurrency.symbol;
-				this.id = this.$store.state.activeCurrency.symbol;
+				this.id = this.$store.state.activeCurrency.id;
 
 			},
 			editCurrency(currency,event) {
 				event.preventDefault();
 				this.$store.commit("editCurrency",currency);
+				this.$router.push("/currencies");
 			}
 		},
 
