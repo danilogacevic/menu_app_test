@@ -51,8 +51,29 @@ export default new Vuex.Store({
 
 			);
 
+		},
+		setCartData(state,data) {
+			state.currencies = data;
 		}
 
 
+	},
+	actions: {
+		loadCurrencyList(context){
+
+			let data = localStorage.getItem("list");
+
+			if(data !=null){
+				context.commit("setCartData",JSON.parse(data));
+			}
+		},
+		storeCurrency(context){
+			localStorage.setItem("list",JSON.stringify(context.state.currencies));
+		},
+		initializeStoreData(context,store){
+			context.dispatch("loadCurrencyList");
+			store.watch(state => state.currencies,
+				()=>context.dispatch("storeCurrency"));
+		}
 	}
 });

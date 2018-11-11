@@ -31,7 +31,7 @@
 </template>
 
 <script>
-	import {mapState, mapMutations} from "vuex";
+	import {mapState, mapMutations,mapActions} from "vuex";
 
 	export default {
 
@@ -80,12 +80,18 @@
 		},
 		methods: {
 			...mapMutations(["setActive","deleteCurrency","searchCurrency"]),
+			...mapActions(["initializeStoreData"]),
+
 			editCurrency(c){
 
 				this.$store.commit("setActive",c);
 				this.$router.push("/currencies/edit");
 
 			}
+		},
+		created(){
+
+			this.initializeStoreData(this.$store);
 		}
 	}
 </script>
