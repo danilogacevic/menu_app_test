@@ -1,15 +1,20 @@
 <template>
-	<div class="col-md-4">
+	<div class="col-md-6">
+		<div class="addit">
+			<p style="text-align: left;">Add currency</p>
+		</div>
+		
+   <form>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Currency code</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" v-model="$v.code.$model" placeholder="Email">
+		      <validation-error v-bind:validation="$v.code" />
 
-        <form>
-  <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Currency code</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" v-model="$v.code.$model" placeholder="Email">
-      <validation-error v-bind:validation="$v.code" />
+		    </div>
+		  </div>
+    <hr>
 
-    </div>
-  </div>
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Currency symbol</label>
     <div class="col-sm-10">
@@ -18,11 +23,11 @@
 
     </div>
   </div>
-  
+  <hr>
 
   <div class="form-group">
     
-      <button type="submit" class="btn btn-primary float-right" @click="validateAndAdd(currency,$event)">Sign in</button>
+      <button type="submit" class="btn btn-primary float-right addButton" @click="validateAndAdd(currency,$event)">Submit</button>
   </div>
 </form>
       </div>
@@ -113,3 +118,16 @@
 
 	}
 </script>
+
+<style scoped>
+	.addit {
+		border-bottom: 1px solid orange;
+		margin-bottom: 1%;
+	}
+
+	.addButton {
+		background-color: orange;
+		border: none;
+	}
+</style>
+

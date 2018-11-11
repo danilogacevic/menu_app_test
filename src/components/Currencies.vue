@@ -14,9 +14,7 @@
 				</nav>
 			</div>
 
-			
-  <!-- Navbar content -->
-</nav>
+		
 		</div>
 
 		<div class="row main-content">

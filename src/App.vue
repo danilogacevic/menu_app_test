@@ -33,4 +33,12 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
 }
+
+.list-group-flush .list-group-item {
+    text-align: left;
+  }
+  
 </style>
+
+
+
