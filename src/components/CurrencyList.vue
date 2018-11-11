@@ -6,7 +6,7 @@
 	        <li class="list-group-item listHeader">Currency list</li>
 
 
-			<li class="list-group-item" v-for="c in currencies" v-bind:key="c.id" @click.self="editCurrency(c)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li>
+			<li class="list-group-item currency" v-for="c in currencies" v-bind:key="c.id" @click.self="editCurrency(c,$event)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li>
 
 			<!-- <li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li> -->
 
@@ -24,7 +24,7 @@
 	        <li class="list-group-item" v-if="searching">Searched List</li>
 
 
-			<li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li>
+			<li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c,$event)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li>
 			
 		</ul>
       </div>
@@ -82,7 +82,12 @@
 			...mapMutations(["setActive","deleteCurrency","searchCurrency"]),
 			...mapActions(["initializeStoreData"]),
 
-			editCurrency(c){
+			editCurrency(c,event){
+
+				let elements = Array.from(document.getElementsByClassName("currency"));
+				elements.forEach(el => el.style.color = "black");
+
+				event.target.style.color = "orange";
 
 				this.$store.commit("setActive",c);
 				this.$router.push("/currencies/edit");
