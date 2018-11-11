@@ -37,7 +37,20 @@ export default {
 .list-group-flush .list-group-item {
     text-align: left;
   }
-  
+
+  .svg-inline--fa.fa-w-14 {
+    width: 6.875em;
+}
+
+.leftRightContent {
+  padding-top: 2%;
+}
+
+.svg-inline--fa.fa-w-14.fa-plus-square {
+    width: 0.875em;
+
+}
+
 </style>
 
 

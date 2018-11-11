@@ -1,9 +1,9 @@
 <template>
-	<div class="col-md-4" style="background-color: whitesmoke;">
-		<input type="text" class="form-control" v-on:input="searchCurrency(searchTerm)" v-model="searchTerm" placeholder="Search">
+	<div class="col-md-4 leftRightContent" style="background-color: whitesmoke;">
+		<input type="text" class="form-control" v-on:input="searchCurrency(searchTerm)" v-model="searchTerm" placeholder="Search" style="margin-bottom: 2%;">
         <ul ref="list" class="list-group list-group-flush float-left" style="width: 100%;" >
 		
-	        <li class="list-group-item">Currency list</li>
+	        <li class="list-group-item listHeader">Currency list</li>
 
 
 			<li class="list-group-item" v-for="c in currencies" v-bind:key="c.id" @click.self="editCurrency(c)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li>
@@ -14,6 +14,7 @@
 			<li class="list-group-item">
 
 				<router-link to="/currencies/add">
+				<font-awesome-icon icon="plus-square"/>
                     Add currency
                 </router-link></li>
 
@@ -88,3 +89,16 @@
 		}
 	}
 </script>
+
+<style>
+
+	a {
+		color:orange !important;
+	}
+
+	.listHeader {
+		color: orange;
+		border-bottom: 2px solid orange !important;
+	}
+
+</style>

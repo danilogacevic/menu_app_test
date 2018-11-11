@@ -1,5 +1,5 @@
 <template>
-	<div class="text-danger" v-if="show">
+	<div v-if="show" style="text-align: left;color:orange;">
 		<div v-for="m in messages" v-bind:key="m">{{m}}</div>
 	</div>
 </template>

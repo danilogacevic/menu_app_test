@@ -16,6 +16,8 @@ export default new VueRouter({
 		{path:"/currencies",component:Home},
 		{ path: "/currencies/add",component: AddCurrency},
 		{ path: "/currencies/edit",component: EditCurrency},
+		{ path: "*", redirect: "/currencies"}
+
 
 	]
 });

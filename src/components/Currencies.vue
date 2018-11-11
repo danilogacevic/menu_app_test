@@ -5,12 +5,13 @@
 			<div class="col-md-4 custom-header">
 				<nav class="navbar" style="background-color: #ff751a;">
 				  <!-- Navbar content -->
+				  <span style="color:white;"><font-awesome-icon icon="arrow-down"/></span>
 				</nav>
 			</div>
 			<div class="col-md-8 custom-header">
 				<nav class="navbar" style="background-color: #ff944d;">
 				  <!-- Navbar content -->
-				  <span style="color:white;"><i class="fas fa-euro-sign 2x"></i>Currencies</span>
+				  <span style="color:white;padding-left: 2%;"><font-awesome-icon icon="euro-sign"/> Currencies</span>
 				</nav>
 			</div>
 

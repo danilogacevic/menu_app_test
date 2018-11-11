@@ -1,5 +1,5 @@
 <template>
-	<div class="col-md-6">
+	<div class="col-md-6 leftRightContent">
 		<div class="addit">
 			<p style="text-align: left;">Add currency</p>
 		</div>
