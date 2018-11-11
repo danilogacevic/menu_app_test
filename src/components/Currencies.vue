@@ -2,6 +2,24 @@
 
 	<div class="container-fluid">
 		<div class="row">
+			<div class="col-md-4 custom-header">
+				<nav class="navbar" style="background-color: #ff751a;">
+				  <!-- Navbar content -->
+				</nav>
+			</div>
+			<div class="col-md-8 custom-header">
+				<nav class="navbar" style="background-color: #ff944d;">
+				  <!-- Navbar content -->
+				  <span style="color:white;"><i class="fas fa-euro-sign 2x"></i>Currencies</span>
+				</nav>
+			</div>
+
+			
+  <!-- Navbar content -->
+</nav>
+		</div>
+
+		<div class="row main-content">
 			<currency-list></currency-list>
 			<router-view></router-view>
 		</div>
@@ -23,3 +41,22 @@
 
 	}
 </script>
+
+<style scoped>
+	.navbar {
+		padding: 8px 0px;
+	}
+
+	.main-content {
+		height: 90vh;
+		border-bottom: 1px solid black;
+	}
+
+	.custom-header {
+		padding: 0px !important;
+	}
+
+	.orange {
+		background-color: #ff751a;
+	}
+</style>

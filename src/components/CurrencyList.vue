@@ -1,15 +1,30 @@
 <template>
-	<div class="col-md-4">
-        <ul class="list-group list-group-flush float-left">
-
+	<div class="col-md-4" style="background-color: whitesmoke;">
+		<input type="text" class="form-control" v-on:input="searchCurrency(searchTerm)" v-model="searchTerm" placeholder="Search">
+        <ul ref="list" class="list-group list-group-flush float-left" style="width: 100%;" >
+		
 	        <li class="list-group-item">Currency list</li>
+
+
 			<li class="list-group-item" v-for="c in currencies" v-bind:key="c.id" @click.self="editCurrency(c)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li>
+
+			<!-- <li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li> -->
+
+
 			<li class="list-group-item">
 
 				<router-link to="/currencies/add">
                     Add currency
                 </router-link></li>
 
+		</ul>
+		<ul class="list-group list-group-flush float-left" style="width: 100%;">
+
+	        <li class="list-group-item" v-if="searching">Searched List</li>
+
+
+			<li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li>
+			
 		</ul>
       </div>
 </template>
@@ -18,12 +33,52 @@
 	import {mapState, mapMutations} from "vuex";
 
 	export default {
+
+		data(){
+
+			return {
+
+				searchTerm:''
+			}
+		},
+
+		watch: {
+
+			searchTerm: function(term) {
+
+				this.searchCurrency(term);
+
+				if(term != '') {
+
+				this.$refs.list.style.display = "none";
+				// return true;
+
+				} else {
+
+				this.$refs.list.style.display = "block";
+				// return false;
+
+				}
+ 
+
+			}
+
+		},
+
 		computed: {
-			...mapState(["currencies"])
+
+			...mapState(["currencies","searchedCurrency"]),
+
+			searching(){
+
+				return this.searchTerm != '' ? true : false;
+
+			}
+
+
 		},
 		methods: {
-			...mapMutations(["setActive","deleteCurrency"]),
-			
+			...mapMutations(["setActive","deleteCurrency","searchCurrency"]),
 			editCurrency(c){
 
 				this.$store.commit("setActive",c);

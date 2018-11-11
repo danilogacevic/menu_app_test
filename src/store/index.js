@@ -7,6 +7,7 @@ export default new Vuex.Store({
 	strict:true,
 	state: {
 		currencies: [],
+		searchedCurrency:[],
 		activeCurrency: null
 	},
 	getters: {
@@ -42,6 +43,16 @@ export default new Vuex.Store({
 			state.activeCurrency = currency;
 
 		},
-		
+		searchCurrency(state,term){
+
+			state.searchedCurrency = state.currencies.filter(c => c.iso == term || c.symbol == term
+				// let reg = new RegExp(c.iso);
+				// return reg.test(/aa/);
+
+			);
+
+		}
+
+
 	}
 });
