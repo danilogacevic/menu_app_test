@@ -14,9 +14,10 @@
 			<li class="list-group-item">
 
 				<router-link to="/currencies/add">
-				<font-awesome-icon icon="plus-square"/>
-                    Add currency
-                </router-link></li>
+						<font-awesome-icon icon="plus-square"/>
+		                    Add currency
+                </router-link>
+            </li>
 
 		</ul>
 		<ul class="list-group list-group-flush float-left" style="width: 100%;">

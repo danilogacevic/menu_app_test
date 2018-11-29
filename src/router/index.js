@@ -11,7 +11,6 @@ Vue.use(VueRouter);
 
 
 export default new VueRouter({
-	mode:"history",
 	routes: [
 		{path:"/currencies",component:Home},
 		{ path: "/currencies/add",component: AddCurrency},
