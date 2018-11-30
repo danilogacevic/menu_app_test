@@ -34,7 +34,7 @@
 </template>
 
 <script>
-	import {mapState,mapMutations} from "vuex";
+	import {mapMutations} from "vuex";
 	import {required} from "vuelidate/lib/validators"
 	import ValidationError from "./ValidationError"
 
@@ -83,6 +83,8 @@
 
 		methods: {
 
+			...mapMutations(["setActive"]),
+
 			currencyToEdit(){
 
 				this.iso = this.$store.state.activeCurrency.iso;
@@ -119,6 +121,9 @@
 		},
 
 		beforeDestroy(){
+
+			this.setActive(null);
+			this.editingCurrency.$emit('editingCurrencySelected');
 
 			unwatcher();
 
