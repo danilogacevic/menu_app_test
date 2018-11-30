@@ -8,7 +8,7 @@
   <div class="form-group row">
     <label for="inputEmail3" class="col-sm-2 col-form-label">Currency code</label>
     <div class="col-sm-10">
-   <!--    <input type="text" class="form-control" v-model="code" placeholder="Email"> -->
+
 
       <input type="text" class="form-control" v-model="$v.iso.$model" placeholder="ISO">
 		      <validation-error v-bind:validation="$v.iso" />
@@ -17,7 +17,7 @@
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Currency symbol</label>
     <div class="col-sm-10">
-      <!-- <input type="text" class="form-control" v-model="symbol" placeholder="Password"> -->
+  
 
       <input type="text" class="form-control" v-model="$v.symbol.$model" placeholder="Symbol">
         <validation-error v-bind:validation="$v.symbol" />

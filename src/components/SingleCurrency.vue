@@ -1,7 +1,7 @@
 <template>
-	<li class="list-group-item" :class="{listHeader:active}" @click="editCurrency(currency)">
+	<li class="list-group-item" :class="{listHeader:active}">
 
-		{{currency.iso}}
+		<span @click="editCurrency(currency)">{{currency.iso}}</span>
 
 		<slot></slot>
 		

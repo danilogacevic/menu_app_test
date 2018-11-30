@@ -3,7 +3,7 @@
 		<input type="text" class="form-control"  v-model="searchTerm" placeholder="Search" style="margin-bottom: 2%;">
         <ul v-if="visible" class="list-group list-group-flush float-left" style="width: 100%;" >
 			<li class="list-group-item listHeader">Currency list</li>
-				<single-currency class="list-group-item currency" v-for="c in currencies" v-bind:key="c.id" v-bind:currency="c"><span @click.self="deleteCurrency(c.id)" class="float-right">delete</span></single-currency>
+				<single-currency class="list-group-item currency" v-for="c in currencies" v-bind:key="c.id" v-bind:currency="c"><span @click.self="removeCurrency(c.id)" class="float-right">delete</span></single-currency>
 			<li class="list-group-item">
 				<router-link to="/currencies/add">
 					<font-awesome-icon icon="plus-square"/>
@@ -12,7 +12,8 @@
             </li>
         </ul>
 		<ul v-if="!visible" class="list-group list-group-flush float-left" style="width: 100%;">
-				<single-currency class="list-group-item currency" v-for="c in searchedCurrency" v-bind:key="c.id" v-bind:currency="c"><span @click.self="deleteCurrency(c.id)" class="float-right">delete</span></single-currency>
+			<li class="list-group-item" v-if="!visible">Searched List</li>
+				<single-currency class="list-group-item currency" v-for="c in searchedCurrency" v-bind:key="c.id" v-bind:currency="c"><span @click.self="removeCurrency(c.id)" class="float-right">delete</span></single-currency>
 		</ul>
       </div>
 </template>
@@ -76,6 +77,15 @@
 			searchForCurrency(){
 
 				this.searchCurrency(this.searchTerm);
+
+			},
+
+			removeCurrency(id){
+
+				this.deleteCurrency(id);
+				this.$router.push('/currencies');
+				this.visible=true;
+				this.searchTerm='';
 
 			}
 
