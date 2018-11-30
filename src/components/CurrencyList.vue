@@ -1,39 +1,27 @@
 <template>
 	<div class="col-md-4 leftRightContent" style="background-color: whitesmoke;">
-		<input type="text" class="form-control" v-on:input="searchCurrency(searchTerm)" v-model="searchTerm" placeholder="Search" style="margin-bottom: 2%;">
+		<input type="text" class="form-control"  v-model="searchTerm" placeholder="Search" style="margin-bottom: 2%;">
         <ul v-if="visible" class="list-group list-group-flush float-left" style="width: 100%;" >
-		
-	        <li class="list-group-item listHeader">Currency list</li>
-
-
-			<single-currency class="list-group-item currency" v-for="c in currencies" v-bind:key="c.id" v-bind:currency="c"><span @click.self="deleteCurrency(c.id)" class="float-right">delete</span></single-currency>
-
-			<!-- <li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li> -->
-
-
+			<li class="list-group-item listHeader">Currency list</li>
+				<single-currency class="list-group-item currency" v-for="c in currencies" v-bind:key="c.id" v-bind:currency="c"><span @click.self="deleteCurrency(c.id)" class="float-right">delete</span></single-currency>
 			<li class="list-group-item">
-
 				<router-link to="/currencies/add">
-						<font-awesome-icon icon="plus-square"/>
-		                    Add currency
-                </router-link>
+					<font-awesome-icon icon="plus-square"/>
+					Add currency
+				</router-link>
             </li>
-
-		</ul>
+        </ul>
 		<ul v-if="!visible" class="list-group list-group-flush float-left" style="width: 100%;">
-
-	        <li class="list-group-item" v-if="searching">Searched List</li>
-
-
-			<!-- <li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c,$event)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li> -->
-
-			<single-currency class="list-group-item currency" v-for="c in searchedCurrency" v-bind:key="c.id" v-bind:currency="c"><span @click.self="deleteCurrency(c.id)" class="float-right">delete</span></single-currency>
-			
+			<li class="list-group-item" v-if="!visible">Searched List</li>
+				<single-currency class="list-group-item currency" v-for="c in searchedCurrency" v-bind:key="c.id" v-bind:currency="c"><span @click.self="deleteCurrency(c.id)" class="float-right">delete</span></single-currency>
 		</ul>
       </div>
 </template>
 
 <script>
+
+
+	import debounce from 'lodash/debounce'
 	import {mapState, mapMutations,mapActions} from "vuex";
 	import SingleCurrency from "./SingleCurrency"
 
@@ -57,17 +45,17 @@
 
 			searchTerm: function(term) {
 
-				this.searchCurrency(term);
+				this.debouncedSearch();
 
 				if(term != '') {
 
 				this.visible=false;
-				// return true;
+		
 
 				} else {
 
 				this.visible=true;
-				// return false;
+			
 
 				}
  
@@ -80,30 +68,23 @@
 
 			...mapState(["currencies","searchedCurrency"]),
 
-			searching(){
-
-				return this.searchTerm != '' ? true : false;
-
-			}
-
-
 		},
 		methods: {
+			
 			...mapMutations(["setActive","deleteCurrency","searchCurrency"]),
 			...mapActions(["initializeStoreData"]),
 
-			editCurrency(c,event){
+			searchForCurrency(){
 
-			
-
-				this.$store.commit("setActive",c);
-				this.$router.push("/currencies/edit");
+				this.searchCurrency(this.searchTerm);
 
 			}
+
 		},
 		created(){
 
 			this.initializeStoreData(this.$store);
+			this.debouncedSearch = debounce(this.searchForCurrency,500)
 		}
 	}
 </script>
