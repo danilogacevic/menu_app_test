@@ -37,6 +37,7 @@ export default new Vuex.Store({
 			let index = state.currencies.findIndex(c => c.id === id);
 			state.currencies.splice(index,1);
 
+
 		},
 		setActive(state,currency){
 
@@ -45,13 +46,22 @@ export default new Vuex.Store({
 		},
 		searchCurrency(state,term){
 
-			term = term.toLowerCase();
+			if(term != '') {
 
-	state.searchedCurrency = state.currencies.filter(
+				term = term.toLowerCase();
 
-		c => c.iso.toLowerCase().includes(term) || c.symbol.toLowerCase().includes(term)
+				state.searchedCurrency = state.currencies.filter(
 
-			);
+					c => c.iso.toLowerCase().includes(term) || c.symbol.toLowerCase().includes(term)
+
+																);
+
+			} else {
+
+				state.searchedCurrency.length = 0;
+			}
+
+			
 
 		},
 		setCartData(state,data) {

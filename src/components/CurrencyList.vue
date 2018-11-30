@@ -12,7 +12,6 @@
             </li>
         </ul>
 		<ul v-if="!visible" class="list-group list-group-flush float-left" style="width: 100%;">
-			<li class="list-group-item" v-if="!visible">Searched List</li>
 				<single-currency class="list-group-item currency" v-for="c in searchedCurrency" v-bind:key="c.id" v-bind:currency="c"><span @click.self="deleteCurrency(c.id)" class="float-right">delete</span></single-currency>
 		</ul>
       </div>
@@ -70,7 +69,7 @@
 
 		},
 		methods: {
-			
+
 			...mapMutations(["setActive","deleteCurrency","searchCurrency"]),
 			...mapActions(["initializeStoreData"]),
 
