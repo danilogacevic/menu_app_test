@@ -63,24 +63,12 @@
 			iso: {
 
 				required,
-
-				// isUnique(){
-
-				// 	return !this.$store.state.currencies.find(c => c.iso == this.iso);
-				// }
 		
 				},
 
 			symbol: {
 
 				required,
-
-				// isUnique(){
-
-				// 	return !this.$store.state.currencies.find(c => c.symbol == this.symbol);
-				// }
-
-
 			}
 		},
 

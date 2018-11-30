@@ -20,7 +20,7 @@
 
 		<div class="row main-content">
 			<currency-list></currency-list>
-			<router-view></router-view>
+			<home></home>
 		</div>
         
       </div>
@@ -30,13 +30,13 @@
 <script>
 	import Vue from 'vue'
 	import CurrencyList from "./CurrencyList";
-	// import AddCurrency from "./AddCurrency";
+	import Home from "./Home";
 
 	export default {
 
 		components:{
 			CurrencyList,
-			// AddCurrency
+			Home
 		},
 
 		data(){

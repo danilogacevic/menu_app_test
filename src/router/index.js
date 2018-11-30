@@ -12,9 +12,18 @@ Vue.use(VueRouter);
 
 export default new VueRouter({
 	routes: [
-		{path:"/currencies",component:Home},
-		{ path: "/currencies/add",component: AddCurrency},
-		{ path: "/currencies/edit",component: EditCurrency},
+
+		{ path:"/currencies",component:Home,
+
+				children:[
+
+							{ path: "add", component: AddCurrency},
+							{ path: "edit",component: EditCurrency},
+
+
+                      	]
+			},
+
 		{ path: "*", redirect: "/currencies"}
 
 
