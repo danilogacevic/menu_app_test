@@ -45,9 +45,11 @@ export default new Vuex.Store({
 		},
 		searchCurrency(state,term){
 
-			state.searchedCurrency = state.currencies.filter(c => c.iso.includes(term) || c.symbol.includes(term)
-				// let reg = new RegExp(c.iso);
-				// return reg.test(/aa/);
+			term = term.toLowerCase();
+
+	state.searchedCurrency = state.currencies.filter(
+
+		c => c.iso.toLowerCase().includes(term) || c.symbol.toLowerCase().includes(term)
 
 			);
 

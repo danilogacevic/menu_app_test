@@ -1,7 +1,7 @@
 <template>
 	<div class="col-md-4 leftRightContent" style="background-color: whitesmoke;">
 		<input type="text" class="form-control" v-on:input="searchCurrency(searchTerm)" v-model="searchTerm" placeholder="Search" style="margin-bottom: 2%;">
-        <ul ref="list" class="list-group list-group-flush float-left" style="width: 100%;" >
+        <ul v-if="visible" class="list-group list-group-flush float-left" style="width: 100%;" >
 		
 	        <li class="list-group-item listHeader">Currency list</li>
 
@@ -20,12 +20,14 @@
             </li>
 
 		</ul>
-		<ul class="list-group list-group-flush float-left" style="width: 100%;">
+		<ul v-if="!visible" class="list-group list-group-flush float-left" style="width: 100%;">
 
 	        <li class="list-group-item" v-if="searching">Searched List</li>
 
 
-			<li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c,$event)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li>
+			<!-- <li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c,$event)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li> -->
+
+			<single-currency class="list-group-item currency" v-for="c in searchedCurrency" v-bind:key="c.id" v-bind:currency="c"><span @click.self="deleteCurrency(c.id)" class="float-right">delete</span></single-currency>
 			
 		</ul>
       </div>
@@ -46,7 +48,8 @@
 
 			return {
 
-				searchTerm:''
+				searchTerm:'',
+				visible:true
 			}
 		},
 
@@ -58,12 +61,12 @@
 
 				if(term != '') {
 
-				this.$refs.list.style.display = "none";
+				this.visible=false;
 				// return true;
 
 				} else {
 
-				this.$refs.list.style.display = "block";
+				this.visible=true;
 				// return false;
 
 				}
