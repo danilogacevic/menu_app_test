@@ -8,8 +8,8 @@
 		  <div class="form-group row">
 		    <label for="inputEmail3" class="col-sm-2 col-form-label">Currency code</label>
 		    <div class="col-sm-10">
-		      <input type="text" class="form-control" v-model="$v.code.$model" placeholder="Code">
-		      <validation-error v-bind:validation="$v.code" />
+		      <input type="text" class="form-control" v-model="$v.iso.$model" placeholder="ISO">
+		      <validation-error v-bind:validation="$v.iso" />
 
 		    </div>
 		  </div>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-	import {mapState,mapMutations} from "vuex";
+	import {mapMutations} from "vuex";
 	import {required} from "vuelidate/lib/validators"
 	import ValidationError from "./ValidationError"
 
@@ -46,19 +46,19 @@
 
 			return {
 
-				code:'',
+				id:null,
+				iso:'',
 				symbol:''
 			}
 		},
 		validations: {
-			code: {
+			iso: {
 
 				required,
 
 				isUnique(){
 
-					// return this.isDuplicate == -1;
-					return !this.$store.state.currencies.find(c => c.iso == this.code);
+					return !this.$store.state.currencies.find(c => c.iso == this.iso);
 				}
 		
 				},
@@ -68,7 +68,6 @@
 				required,
 				isUnique(){
 
-					// return this.isDuplicate == -1;
 					return !this.$store.state.currencies.find(c => c.symbol == this.symbol);
 				}
 
@@ -80,23 +79,19 @@
 
 			currency(){
 
-			return Object.assign({id:Math.ceil(Math.random()*100)},{iso:this.code,symbol:this.symbol});
+			return {id:this.id,iso:this.iso,symbol:this.symbol}
 
 			},
 
-			// isDuplicate(){
-			// 	return this.$store.state.currencies.findIndex(c => c.iso == this.code || c.symbol == this.symbol);
-			// }
+		},
+
+		created(){
+
+			this.id = Math.ceil(Math.random()*100);
 
 		},
 
 		methods: {
-
-			// addCurrency(currency){
-
-			// 	// this.$store.commit("addCurrency",currency);
-			// 	// console.log(currency);
-			// }
 
 			...mapMutations(["addCurrency"]),
 			validateAndAdd(currency,event){

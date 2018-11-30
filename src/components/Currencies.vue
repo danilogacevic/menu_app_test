@@ -28,6 +28,7 @@
 </template>
 
 <script>
+	import Vue from 'vue'
 	import CurrencyList from "./CurrencyList";
 	// import AddCurrency from "./AddCurrency";
 
@@ -36,6 +37,51 @@
 		components:{
 			CurrencyList,
 			// AddCurrency
+		},
+
+		data(){
+
+			return {
+
+				selected: 0,
+				editingCurrency: new Vue()
+			}
+
+		},
+
+		provide: function () {
+
+			return {
+
+				editingCurrency:this.editingCurrency
+
+			}
+		},
+
+		watch: {
+
+			selected() {
+
+				this.editingCurrency.$emit('changeSelected');
+
+			}
+
+		},
+
+		methods: {
+
+			changeSelected() {
+
+				this.selected++
+
+			}
+
+		},
+
+		created(){
+
+			this.editingCurrency.$on('editingCurrencySelected', this.changeSelected)
+
 		}
 
 	}

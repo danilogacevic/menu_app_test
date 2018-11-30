@@ -6,7 +6,7 @@
 	        <li class="list-group-item listHeader">Currency list</li>
 
 
-			<li class="list-group-item currency" v-for="c in currencies" v-bind:key="c.id" @click.self="editCurrency(c,$event)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li>
+			<single-currency class="list-group-item currency" v-for="c in currencies" v-bind:key="c.id" v-bind:currency="c"><span @click.self="deleteCurrency(c.id)" class="float-right">delete</span></single-currency>
 
 			<!-- <li class="list-group-item" v-for="c in searchedCurrency" v-bind:key="c.id" @click.self="editCurrency(c)">{{c.iso}} <span @click="deleteCurrency(c.id)" class="float-right">delete</span></li> -->
 
@@ -33,8 +33,14 @@
 
 <script>
 	import {mapState, mapMutations,mapActions} from "vuex";
+	import SingleCurrency from "./SingleCurrency"
 
 	export default {
+
+		components:{
+
+			SingleCurrency
+		},
 
 		data(){
 
@@ -85,10 +91,7 @@
 
 			editCurrency(c,event){
 
-				let elements = Array.from(document.getElementsByClassName("currency"));
-				elements.forEach(el => el.style.color = "black");
-
-				event.target.style.color = "orange";
+			
 
 				this.$store.commit("setActive",c);
 				this.$router.push("/currencies/edit");
@@ -108,9 +111,6 @@
 		color:orange !important;
 	}
 
-	.listHeader {
-		color: orange;
-		border-bottom: 2px solid orange !important;
-	}
+	
 
 </style>

@@ -37,8 +37,7 @@
       "eslint:recommended"
     ],
     "rules": {
-      "vue/html-indent":"off",
-      "vue/v-on-style":["warn","longform"]
+      "vue/html-indent":"off"
     },
     "parserOptions": {
       "parser": "babel-eslint"
