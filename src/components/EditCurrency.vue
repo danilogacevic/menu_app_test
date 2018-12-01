@@ -34,7 +34,7 @@
 </template>
 
 <script>
-	import {mapMutations} from "vuex";
+	import {mapGetters,mapMutations} from "vuex";
 	import {required} from "vuelidate/lib/validators"
 	import ValidationError from "./ValidationError"
 
@@ -74,6 +74,8 @@
 
 		computed: {
 
+			...mapGetters({active:"getActiveCurrency"}),
+
 			currency(){
 
 				return {id:this.id,iso:this.iso,symbol:this.symbol}
@@ -87,9 +89,9 @@
 
 			currencyToEdit(){
 
-				this.iso = this.$store.state.activeCurrency.iso;
-				this.symbol = this.$store.state.activeCurrency.symbol;
-				this.id = this.$store.state.activeCurrency.id;
+				this.iso = this.active.iso;
+				this.symbol = this.active.symbol;
+				this.id = this.active.id;
 
 				this.editingCurrency.$emit('editingCurrencySelected')
 

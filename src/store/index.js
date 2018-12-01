@@ -12,7 +12,7 @@ export default new Vuex.Store({
 	},
 	getters: {
 
-		isDuplicate: (state,value) => state.currencies.findIndex(c => c.iso == value || c.symbol == value),
+		getActiveCurrency: (state) => state.activeCurrency
 
 	},
 	mutations: {
