@@ -5,6 +5,7 @@ Vue.config.productionTip = false
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "font-awesome/css/font-awesome.min.css"
+import "animate.css/animate.min.css"
 
 import store from "./store";
 import router from "./router";
